@@ -26,31 +26,9 @@ export class UsersController {
 
     @Post('new')
     createUser(@Res() res: Response, @Body() createDto: CreateUserDto): any {
-        try {
-            debugger
-            validate(createDto).then((errors: ValidationError[]) => {
-                    if(errors.length > 0){
-                        console.log("=====>",errors)
-                        return res.render('users/create', errors)
-                    }
-                    else{
-                        this.userService.create(createDto);
-                        return res.render('users', { message: "create new user success" })
-                    }
-                }
-            );
-            validateOrReject(createDto).catch(errors => {
-                console.log('Promise rejected (validation failed). Errors: ', errors);
-              });
-        }
-        catch (ex:any) {
-           if(typeof ex === 'string' ){
-               console.log(ex)
-           }
-           else if(ex instanceof Error){
-               throw ex.message;
-           }
-        }
+        this.userService.create(createDto);
+        return res.render('users', { message: "create new user success" })
+            
     }
 
     //ex: users?id=621dd3054fbacbc17103b4d3
