@@ -1,0 +1,14 @@
+extends ../shared/layout.pug 
+
+block content 
+    h1 User index page 
+    if message
+        p #{message}
+    #list-users 
+        ul
+            if users && users.length > 0
+                each user in users
+                    li= "id: " + user._id
+                    li= "name: " + user.name 
+                    li= "username: " + user.username
+                    li= "age: " + user.age

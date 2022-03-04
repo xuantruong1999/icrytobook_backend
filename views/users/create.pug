@@ -1,0 +1,23 @@
+extends ../shared/layout.pug
+block append head 
+    link(rel="stylesheet" href="/assets/css/users/users.css")
+block content 
+    if(errors && errors.length > 0)
+        #alert 
+            each error in errors 
+                div.error #{error.constraints}
+    h1.text-title.text-center CREATE NEW USER 
+    form#form-create.mx-auto.container(action="new", method="post")
+        .name.form-group
+            label(for="name") Name
+            input#name.form-control(name="name", required, type="text") 
+        .username.form-group
+            label(for="username") UserName 
+            input#username.form-control(name="username", required, type="text") 
+        .passwowrd.form-group 
+            label(for="password") Password
+            input#password.form-control(name="password", required, type="password") 
+        .age.form-group 
+            label(for="age") Age
+            input#age.form-control(name="age", required, type="number")
+        button.btn.btn-primary submit
